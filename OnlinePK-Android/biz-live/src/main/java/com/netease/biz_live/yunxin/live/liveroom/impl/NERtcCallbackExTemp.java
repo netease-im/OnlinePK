@@ -136,6 +136,10 @@ public class NERtcCallbackExTemp implements NERtcCallbackEx {
 
     }
 
+    @Override
+    public void onAudioRecording(int i, String s) {
+
+    }
 
 
     @Override
@@ -145,6 +149,16 @@ public class NERtcCallbackExTemp implements NERtcCallbackEx {
 
     @Override
     public void onWarning(int i) {
+
+    }
+
+    @Override
+    public void onMediaRelayStatesChange(int i, String s) {
+
+    }
+
+    @Override
+    public void onMediaRelayReceiveEvent(int i, int i1, String s) {
 
     }
 

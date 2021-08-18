@@ -10,6 +10,7 @@ import android.graphics.Color;
 import android.view.View;
 
 import com.blankj.utilcode.util.ToastUtils;
+import com.netease.biz_live.BuildConfig;
 import com.netease.biz_live.yunxin.live.constant.LiveStreamParams;
 import com.netease.biz_live.yunxin.live.liveroom.LiveRoomCallback;
 import com.netease.biz_live.yunxin.live.liveroom.NERTCAnchorBaseLiveRoomDelegate;
@@ -114,6 +115,14 @@ public  class NERTCAnchorBaseLiveRoomImpl extends NERTCAnchorLiveRoom {
         NERtcVideoConfig videoConfig = new NERtcVideoConfig();
         videoConfig.frontCamera = true;//默认是前置摄像头
         neRtcEx.setLocalVideoConfig(videoConfig);
+        if(option == null){
+            option = new NERtcOption();
+        }
+        if(BuildConfig.DEBUG){
+            option.logLevel = NERtcConstants.LogLevel.INFO;
+        }else {
+            option.logLevel = NERtcConstants.LogLevel.WARNING;
+        }
 
         try {
             neRtcEx.init(context, appKey, initNERtcCallback(), option);
@@ -156,7 +165,7 @@ public  class NERTCAnchorBaseLiveRoomImpl extends NERTCAnchorLiveRoom {
         if (mAudioScenario == NERtcConstants.AudioScenario.MUSIC) {
             neRtcEx.setAudioProfile(NERtcConstants.AudioProfile.HIGH_QUALITY_STEREO, mAudioScenario);
         } else {
-            neRtcEx.setAudioProfile(NERtcConstants.AudioProfile.DEFAULT, mAudioScenario);
+            neRtcEx.setAudioProfile(NERtcConstants.AudioProfile.HIGH_QUALITY, mAudioScenario);
         }
         neRtcEx.setChannelProfile(NERtcConstants.RTCChannelProfile.LIVE_BROADCASTING);
         neRtcEx.setClientRole(NERtcConstants.UserRole.CLIENT_ROLE_BROADCASTER);

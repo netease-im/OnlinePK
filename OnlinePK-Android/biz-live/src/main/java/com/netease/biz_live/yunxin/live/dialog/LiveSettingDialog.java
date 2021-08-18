@@ -133,7 +133,7 @@ public class LiveSettingDialog extends BaseBottomDialog {
             tvMusic.setSelected(false);
             tvNormal.setSelected(true);
             if (valueChangeListener != null) {
-                valueChangeListener.audioScenarioChange(NERtcConstants.AudioScenario.DEFAULT);
+                valueChangeListener.audioScenarioChange(NERtcConstants.AudioScenario.CHATROOM);
             }
         });
 
@@ -208,7 +208,7 @@ public class LiveSettingDialog extends BaseBottomDialog {
             case NERtcConstants.AudioScenario.MUSIC:
                 tvMusic.setSelected(true);
                 break;
-            case NERtcConstants.AudioScenario.DEFAULT:
+            case NERtcConstants.AudioScenario.CHATROOM:
             default:
                 tvNormal.setSelected(true);
                 break;
