@@ -139,7 +139,12 @@
 - (int)setAudioQuality:(NSInteger)quality
 {
     NSUInteger oldVal = [NETSLiveConfig shared].audioQuality;
-    int res = [[NERtcEngine sharedEngine] setAudioProfile:kNERtcAudioProfileDefault scenario:quality];
+    int res = -1;
+    if (quality == 0) {//标准
+        res = [[NERtcEngine sharedEngine] setAudioProfile:kNERtcAudioProfileHighQuality scenario:kNERtcAudioScenarioChatRoom];
+    }else if (quality == 2){//音乐
+        res = [[NERtcEngine sharedEngine] setAudioProfile:kNERtcAudioProfileHighQualityStereo scenario:kNERtcAudioScenarioMusic];
+    }
     if (res == 0) {
         [NETSLiveConfig shared].audioQuality = quality;
     } else {

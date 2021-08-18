@@ -449,11 +449,20 @@
     
     // 设置音频质量
     NSUInteger quality = [NETSLiveConfig shared].audioQuality;
-    [coreEngine setAudioProfile:kNERtcAudioProfileDefault scenario:quality];
+    [coreEngine setAudioProfile:kNERtcAudioProfileHighQuality scenario:quality];
+    [coreEngine setChannelProfile:kNERtcChannelProfileLiveBroadcasting];
     
     NERtcEngineContext *context = [[NERtcEngineContext alloc] init];
     context.engineDelegate = self;
     context.appKey = kNertcAppkey;
+    
+    NERtcLogSetting *setting = [[NERtcLogSetting alloc] init];
+     #if DEBUG
+          setting.logLevel = kNERtcLogLevelInfo;
+     #else
+          setting.logLevel = kNERtcLogLevelWarning;
+     #endif
+     context.logSetting = setting;
     int res = [coreEngine setupEngineWithContext:context];
     YXAlogInfo(@"初始化设置 NERtcEngine, res: %d", res);
     

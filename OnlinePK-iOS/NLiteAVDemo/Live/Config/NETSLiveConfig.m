@@ -73,7 +73,7 @@
 /// 默认直播 音频质量
 - (NSUInteger)_defaultAudioQuality
 {
-    return kNERtcAudioScenarioMusic;
+    return kNERtcAudioScenarioChatRoom;
 }
 
 - (void)resetConfig
